@@ -1,0 +1,276 @@
+:root {
+  /* Backgrounds */
+  --bg-dark: #050505;
+  --bg-light: rgb(62, 106, 121);
+  --bg-card: rgba(0, 0, 0, 0.4);
+
+  /* Text */
+  --text-primary: #eee;
+  --text-secondary: #ccc;
+
+  /* Accents */
+  --accent-blue: #29abe2;
+  --accent-green: #4CAF50;
+  --accent-yellow: #DAAA0F;
+
+    --primary: #29abe2;
+  --success: #4caf50;
+
+  /* Borders & shadows */
+  --border-radius: 8px;
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+#drag-region {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34px;            /* tune to your taste */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 1000;
+  background: transparent; /* keep vibrancy visible */
+}
+
+body {
+  padding-top: 34px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: black;
+  color: white;
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+input {
+  margin: 10px 0px;
+}
+
+
+#startBtn:not(:disabled):hover,
+#choose-folder:not(:disabled):hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+
+/* INPUTS */
+#settingsForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.field input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #1c3138;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(41,171,226,0.6);
+}
+
+#choose-folder, #startBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: hsl(184, 43%, 50%);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#startBtn { 
+  display: block;
+  margin-top: 35px;
+  width: 400px;
+  background-color: rgb(76, 175, 79);
+}
+
+#choose-folder .icon {
+  font-size: 1rem;
+}
+
+#choose-folder:active {
+  transform: scale(0.98);
+}
+
+.folder-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.redDot {
+  color: red;
+}
+
+#choose-folder:disabled, #startBtn:disabled {
+  background-color: #999999;
+  opacity: 0.6;              
+  cursor: not-allowed;       
+  box-shadow: none !important;
+}
+
+#startBtn:disabled {
+  background-color: rgb(76, 175, 79);
+}
+
+.loading {
+  cursor: progress; 
+}
+
+.folderOutput {
+  width: 50%;
+  padding: 8px;
+  background: var(--bg-light);
+  border-radius: 3px;
+  box-shadow:
+    -2px -2px 2px  rgba(255, 255, 255, 0.2),
+     2px  2px 2px  rgba(0, 0, 0, 0.1),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.2),
+    inset  1px  1px 1px rgba(255, 0, 0, 0.1);
+  font-size: 0.8rem;
+}
+/* * { outline: 1px dashed red; } */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: white;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.loading-line {
+  position: relative; 
+  top: -1px;  
+  border: none;
+  height: 1px;
+  background-color: rgb(82, 164, 192);
+  box-shadow: -5px -1px 3px 2px rgba(109, 188, 214, 0.308);
+  margin: 0;
+  width: 100px;
+  transform: translateX(-700%);
+  animation-duration: 1.6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  100% {transform: translateX(600%);}
+}
+
+
+/* PROGRESS CONTAINER */
+
+.bottom-section {
+  background :rgb(20, 20, 20);
+  width: 100%;   
+  min-height: 205px;  
+  height: auto;
+}
+
+.status-container {
+  max-width: 400px;
+  margin: 0 auto 0 auto;
+  padding: 30px 0;   
+}
+
+.progress-container {
+  position: relative;
+  height: 30px;
+  background: #1c3138;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 400px;
+  margin-bottom: 30px;
+    box-shadow: -3px -3px 2px rgba(46, 46, 46, 0.311),
+  5px 5px 5px rgba(0, 0, 0, 0.211),
+  10px 10px 10px rgba(0, 0, 0, 0.211);
+
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+  transition: width 0.4s ease-in-out;
+}
+
+.progress-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 30px;
+  font-weight: 600;
+  color: var(--text);
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.output-container {
+  min-height: 52px;
+  background: var(--bg-light);
+  padding: 0px 8px 0px 8px;
+  font-size: 1rem;
+  border-radius: 3px;
+  box-shadow:
+    inset -1px -1px 1px  rgba(255, 255, 255, 0.2),
+    inset 4px  4px 4px  rgba(0,   0,   0,   0.1),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.2),
+    inset  4px  4px 4px rgba(0,   0,   0,   0.1);
+}
+
+#output, #timeLeft {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+#output {
+  padding-top: 4px;
+}
+
+button.toast-close {
+  font-size: 18px;
+  float: right;
+  align-self: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
