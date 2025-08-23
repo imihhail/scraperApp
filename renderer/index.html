@@ -6,35 +6,51 @@
   </head>
 
   <body>
-    <div id="drag-region">
-    </div>
     
+      <header class="titlebar">
+    <div class="titlebar-left">
+      <div class="app-icon"></div>
+ 
+    </div>
+
+    <!-- <div class="titlebar-center" id="drag-area">
+    </div> -->
+
+    <div class="titlebar-right">
+      <button id="minBtn" class="win-btn" title="Minimize">—</button>
+      <button id="maxBtn" class="win-btn" title="Maximize" disabled>▢</button>
+      <button id="closeWin" class="win-btn close" title="Close">✕</button>
+    </div>
+  </header>
+    <div id="errorContainer" class="error-popup">
+      <div class="errorMsg-box">
+      </div>
+      <div class="closeErrorBtn">
+        ✕
+      </div>
+    </div>
+
     <div class="content">
       <div id="settingsForm">
-        <div class="field">
-          <label for="urlInput">URL <span class="redDot">*</span></label>
-          <input id="urlInput" type="text" placeholder="www.google.com" />
-        </div>
+        <div class="inputWrapper">
+          <div class="field">
+            <input id="urlInput" type="text" placeholder="URL"/>
+          </div>
 
-        <div class="field">
-          <label for="fileNameInput">File name <span class="redDot">*</span></label>
-          <input id="fileNameInput" type="text" placeholder="MyFile" />
-        </div>
+          <div class="field">
+            <input id="fileNameInput" type="text" placeholder="File name"/>
+          </div>
 
-        <div class="field">
-          <label for="delayInput">Extraction delay (seconds)</label>
-          <input id="delayInput" type="number" placeholder="10" />
+          <div class="field">
+            <input id="delayInput" type="number" placeholder="Extraction delay (seconds)" />
+          </div>
         </div>
-
         <div class="folder-section">
-          
           <button id="choose-folder">
-            <span class="icon">📁</span>
-            <span class="label">Select Folder</span>
+            <svg width="32px" height="32px" viewBox="0 0 91.00 91.00" enable-background="new 0 0 91 91" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#36ec64" stroke="#36ec64" stroke-width="0.00091" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.546"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M0.636,89.369h82.969c3.857,0,6.992-3.139,6.992-6.994V31.82H0.636V89.369z" fill="#659571"></path> <path d="M47.745,11.9c-0.869,0-1.688-0.4-2.223-1.086l-7.254-9.299H0.632v24.666h89.965V11.9H47.745z" fill="#a0c294"></path> </g> </g> </g></svg>
           </button>
-          <label title="" class="folderOutput" for="urlInput">No folder location selected <span class="redDot">*</span></label>
+          <label title="" class="folderOutput" for="urlInput">No folder location selected</label>
         </div>
-
         <button id="startBtn" disabled>Start</button>
       </div>
 
@@ -57,7 +73,7 @@
 
         <div class="output-container">
           <pre id="output">Welcome to WebScraper!</pre>
-          <pre id="timeLeft"></pre>
+          <pre id="timeLeft">Version 1.0</pre>
         </div>
       </div>
     </div>

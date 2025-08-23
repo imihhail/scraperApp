@@ -16,7 +16,7 @@ async function handleStartClick() {
   const url         = urlInput.value.trim()
   const scrapeDelay = delayInp.value.trim() * 1000
   const fileName    = await checkFileExistance()
-  const outputPath  = `${folderPath}/${fileName}.csv`
+  const outputPath  = `${folderPath}\\${fileName}.csv`
 
   if (fileName === null) {
     enableUI()
@@ -92,7 +92,7 @@ async function waitForResult() {
   if (result.error) {
     if (result.error === 'elementNotFound') {
       if (firstUpdate) {
-        alertMessage('URL got expired', -1, 'red')
+        alertMessage('URL got expired', -1, false)
         urlInput.value = ""
         
         await pauseNotification(true)
@@ -101,12 +101,11 @@ async function waitForResult() {
         startBtn.addEventListener   ('click', handleStartClick)
       }
       else {
-        alertMessage('Invalid URL', 5000, 'red')
-        progressText.textContent = ""
+        alertMessage('Invalid URL', 5000, true)
       }
     }
     else if (result.error === 'BrowserManuallyClosed') {
-      alertMessage('Browser was closed manually', -1, 'red')
+      alertMessage('Browser was closed manually', -1, false)
 
       await pauseNotification(false)
 
@@ -114,12 +113,13 @@ async function waitForResult() {
       startBtn.addEventListener   ('click', handleResumeClick)
     }
     else if (result.error === 'BrowserInstantlyClosed') {
-      alertMessage('Browser was closed manually', 5000, 'red')
-      progressText.textContent = ""
+      alertMessage('Browser was closed manually', 5000, true)
+    }
+    else if (result.error === 'Invalid URL') {
+      alertMessage('Invalid URL', 5000, true)
     }
     else {
-      alertMessage(result.error, -1, 'red')
-      progressText.textContent = ""
+      alertMessage(result.error, -1, true)
     }
   }
   else if (result.pause) {    
@@ -130,17 +130,20 @@ async function waitForResult() {
   else {    
     urlInput.value       = ""
     delayInp.value       = ""
-    startBtn.innerText   = "Start New"
+    startBtn.innerText   = "Start new"
+    startBtn.disabled    = true
     firstUpdate          = false
     
     output.textContent   = 'Extraction complete! Data saved into:'
-    timeLeft.textContent = `${folderText.textContent}/${fileNameInput.value}`
+    timeLeft.textContent = `${folderText.textContent}\\${fileNameInput.value}`
     fileNameInput.value  = ""
 
     startBtn.style.backgroundColor = 'rgb(76, 175, 79)'
 
     startBtn.removeEventListener('click', handleResumeClick)
     startBtn.addEventListener   ('click', handleStartClick)
+
+    window.api.notifyEvent()
     
     setProgress(1, 1)
   }
@@ -158,3 +161,15 @@ function inputCheck() {
     startBtn.disabled = false
   }
 }
+
+const minBtn   = document.getElementById('minBtn');
+const closeWin = document.getElementById('closeWin');
+
+
+minBtn.addEventListener('click', () => {
+  window.winapi.minimize()
+})
+
+closeWin.addEventListener('click', () => window.winapi.close());
+
+

@@ -1,66 +1,36 @@
 :root {
-  /* Backgrounds */
-  --bg-dark: #050505;
-  --bg-light: rgb(62, 106, 121);
-  --bg-card: rgba(0, 0, 0, 0.4);
+  --bg-progressBoxes: rgba(60, 105, 95, 0.432);
+  --input-border: rgba(114, 255, 126, 0.705);
 
-  /* Text */
-  --text-primary: #eee;
-  --text-secondary: #ccc;
-
-  /* Accents */
-  --accent-blue: #29abe2;
   --accent-green: #4CAF50;
-  --accent-yellow: #DAAA0F;
+  --accent-yellow: #2196F3;
 
-    --primary: #29abe2;
+  --primary: #29abe2;
   --success: #4caf50;
 
-  /* Borders & shadows */
-  --border-radius: 8px;
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 html, body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-}
-#drag-region {
-  -webkit-app-region: drag;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 34px;            /* tune to your taste */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  z-index: 1000;
-  background: transparent; /* keep vibrancy visible */
+  
 }
 
 body {
-  padding-top: 34px;
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: black;
   color: white;
-  font-family: sans-serif;
   line-height: 1.6;
+  letter-spacing: 0.7px;
 }
 
 .content {
   flex: 1;
   overflow: auto;
 }
-
-input {
-  margin: 10px 0px;
-}
-
 
 #startBtn:not(:disabled):hover,
 #choose-folder:not(:disabled):hover {
@@ -74,46 +44,65 @@ input {
   max-width: 400px;
   margin: 0 auto;
   padding: 10px;
+  margin-top: 3px;
+}
+
+.inputWrapper {
+  margin-bottom: 40px;
+}
+
+.field {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 25px;
+  letter-spacing: 0.7px;
 }
 
 .field input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #444;
-  background: #1c3138;
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  background: #1c313800;
   color: white;
+  font-size: 1.1rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.7px;
+}
+
+input::placeholder {
+  font-size: 1.1rem; 
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.7px;
+  color: #dbdada; 
+  padding-left: 3px;
+}
+
+input:focus::placeholder {
+  color: #c0c0c0bb;
 }
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(41,171,226,0.6);
+  border-bottom: 2px solid rgb(114, 255, 126);
 }
 
-#choose-folder, #startBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.7rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
-  background-color: hsl(184, 43%, 50%);
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* FOLDER */
+#choose-folder {
+  padding: 0;
+  padding-bottom: 5px;
+  background-color: rgba(54, 129, 98, 0);
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;
-}
-
-#startBtn { 
-  display: block;
-  margin-top: 35px;
-  width: 400px;
-  background-color: rgb(76, 175, 79);
-}
-
-#choose-folder .icon {
-  font-size: 1rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #choose-folder:active {
@@ -126,51 +115,56 @@ input:focus {
   justify-content: space-between;
 }
 
-.redDot {
-  color: red;
+.folderOutput {
+  height: 100%;
+  width: 85%;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  background: transparent;
+  font-size: 1rem; 
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #c0c0c0bb; 
+  padding-left: 3px;
+  padding-bottom: 2px;
 }
 
-#choose-folder:disabled, #startBtn:disabled {
-  background-color: #999999;
-  opacity: 0.6;              
-  cursor: not-allowed;       
-  box-shadow: none !important;
+/* START */
+#startBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.8px;
+  padding: 0.5rem 0.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: hsl(184, 43%, 50%);
+  border: none;
+  cursor: pointer;
 }
 
 #startBtn:disabled {
+  opacity: 0.6;              
+  cursor: not-allowed;  
+}
+
+#startBtn { 
+  display: block;
+  margin-top: 35px;
+  width: 400px;
   background-color: rgb(76, 175, 79);
 }
 
-.loading {
-  cursor: progress; 
-}
 
-.folderOutput {
-  width: 50%;
-  padding: 8px;
-  background: var(--bg-light);
-  border-radius: 3px;
-  box-shadow:
-    -2px -2px 2px  rgba(255, 255, 255, 0.2),
-     2px  2px 2px  rgba(0, 0, 0, 0.1),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.2),
-    inset  1px  1px 1px rgba(255, 0, 0, 0.1);
-  font-size: 0.8rem;
-}
 /* * { outline: 1px dashed red; } */
-
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
 
 .section-divider {
   border: none;
   height: 1px;
   background-color: white;
   margin: 0;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .loading-line {
@@ -194,32 +188,24 @@ input:focus {
 
 
 /* PROGRESS CONTAINER */
-
 .bottom-section {
-  background :rgb(20, 20, 20);
+  background :rgba(255, 255, 255, 0);
   width: 100%;   
-  min-height: 205px;  
-  height: auto;
 }
 
 .status-container {
   max-width: 400px;
-  margin: 0 auto 0 auto;
-  padding: 30px 0;   
+  margin: 0 auto;
+  padding: 30px 0 20px 0;   
 }
 
 .progress-container {
   position: relative;
   height: 30px;
-  background: #1c3138;
-  border-radius: 4px;
+  background: var(--bg-progressBoxes);
   overflow: hidden;
   max-width: 400px;
   margin-bottom: 30px;
-    box-shadow: -3px -3px 2px rgba(46, 46, 46, 0.311),
-  5px 5px 5px rgba(0, 0, 0, 0.211),
-  10px 10px 10px rgba(0, 0, 0, 0.211);
-
 }
 
 .progress-bar {
@@ -230,6 +216,7 @@ input:focus {
 }
 
 .progress-text {
+  font-family: sans-serif;
   position: absolute;
   top: 0;
   left: 50%;
@@ -243,34 +230,100 @@ input:focus {
 
 .output-container {
   min-height: 52px;
-  background: var(--bg-light);
-  padding: 0px 8px 0px 8px;
-  font-size: 1rem;
-  border-radius: 3px;
-  box-shadow:
-    inset -1px -1px 1px  rgba(255, 255, 255, 0.2),
-    inset 4px  4px 4px  rgba(0,   0,   0,   0.1),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.2),
-    inset  4px  4px 4px rgba(0,   0,   0,   0.1);
+  background: transparent;
+  border: none;
+  padding: 0px;
 }
 
 #output, #timeLeft {
   margin: 0px;
-  padding: 0px;
+  padding-left: 5px;
   font-size: 14px;
   overflow: hidden;
+  font-size: 1rem; 
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #dbdada; 
+  letter-spacing: 0.7px;
 }
 
-#output {
-  padding-top: 4px;
+/* TOPBAR */
+.titlebar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height: 36px;
+  padding: 0 8px;
+  color: #e6eef0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 
-button.toast-close {
-  font-size: 18px;
-  float: right;
-  align-self: center;
-  cursor: pointer;
-  background-color: transparent;
+.titlebar-left {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  -webkit-app-region: drag; 
+}
+
+/* .titlebar-center {
+  flex:1;
+  -webkit-app-region: drag;
+} */
+
+.titlebar-right { display:flex; gap:6px; align-items:center; }
+
+.win-btn {
+  -webkit-app-region: no-drag;
   border: none;
+  background: transparent;
+  color: #cfe7ea;
+  width: 44px;
+  height: 28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.win-btn:hover { background: rgba(255, 255, 255, 0.13); }
+
+.win-btn.close { color: #f84040; }
+.win-btn.close:hover { background: rgba(255, 107, 107, 0.397); }
+
+
+/* ERROR POPUP */
+.error-popup {
+  background-color: red;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;   
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1px 10px;
+  display: none;
+}
+
+.errorMsg-box {
+  font-weight: bold;
+  flex: 1 1 auto;       
+  text-align: center;
+  white-space: nowrap;          
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeErrorBtn {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.closeErrorBtn:hover {
+  color: rgba(0, 0, 0, 0.555);
+}
+
+.loading {
+  cursor: progress; 
 }

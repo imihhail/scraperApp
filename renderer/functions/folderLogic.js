@@ -29,11 +29,11 @@ folderBtn.addEventListener('click', async () => {
 function modifyFolderLocation(fileLocation) {
     const pathLen = folderPath.length
   
-    if (pathLen > 30) {
-      const maxStrLen     = 27
+    if (pathLen > 42) {
+      const maxStrLen     = 37
       const reducedLen    = pathLen - maxStrLen
       const shortenedPath = fileLocation.slice(reducedLen)
-      const newPath       = shortenedPath.slice(shortenedPath.indexOf('/'));// <-------- MIGHT NOT WORK ON MAC, BECAUSE MAC HAS "/" INSTEAD OF "\"
+      const newPath       = shortenedPath.slice(shortenedPath.indexOf('\\'));// <-------- MIGHT NOT WORK ON MAC, BECAUSE MAC HAS "/" INSTEAD OF "\"
   
       return `...${newPath}`
     }
@@ -51,7 +51,7 @@ async function checkFileExistance() {
     const exists   = await window.folderSelector.checkFileExists(folderPath, fileName)
   
     if (exists) {
-      const fullPath  = `${folderPath}/${fileName}.csv`
+      const fullPath  = `${folderPath}\\${fileName}.csv`
       const overwrite = await window.folderSelector.confirmOverwrite(fullPath)
   
       loadingLine.style.animationName = ''

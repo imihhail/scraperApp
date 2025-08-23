@@ -12,19 +12,18 @@ let scrapeData = {}
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = dirname(__filename);
 
-
+let win
 function createWindow() {
-  const win = new BrowserWindow({
+   win = new BrowserWindow({
     title: 'WebScraper',
     width: 875,
-    height: 700,
-    resizable: false, 
+    height: 685,
+    resizable: true, 
     maximizable: false,     
     fullscreenable: false,  
-    titleBarStyle: 'hiddenInset',
     backgroundColor: '#00000000',
-    vibrancy: 'ultra-dark', 
     fullscreen: false,     
+    frame: false,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
@@ -39,6 +38,21 @@ function createWindow() {
 
 app.whenReady().then(createWindow)
 
+ipcMain.handle('window-minimize', () => {
+  win.minimize()
+});
+
+ipcMain.handle('window-close', () => win.close());
+
+// NOTIFY
+ipcMain.handle('notify-event', () => {
+  if (!win) return;
+  win.flashFrame(true);
+
+  if (process.platform === 'darwin') {
+    app.dock.bounce(); 
+  }
+});
 
 // OVERWRITE CONFIRMATION WINDOW
 ipcMain.handle('confirm-overwrite', async (e, filePath) => {
@@ -83,7 +97,8 @@ ipcMain.on('scrapeEnded', (e, msg) => {
   if (msg == "scrapePaused") {
     store.set('scrapeData', scrapeData);
     e.sender.send('scrapePaused', msg)
-  } else if (msg == "scrapeComplete") {
+  }
+  else if (msg == "scrapeComplete") {
     store.delete('scrapeData'); 
     e.sender.send('scrapeComplete', msg)
   }

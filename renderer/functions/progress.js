@@ -1,3 +1,7 @@
+const progressBar = document.getElementById('progressBar');
+const percentage  = document.getElementById('progressText');
+
+
 // UPDATE PROGRESS
 let currentProgress = 1
 let firstUpdate     = false
@@ -20,7 +24,7 @@ api.on('scrapeProgress', (data) => {
     startBtn.removeEventListener('click', handleStartClick)
     startBtn.addEventListener   ('click', handlePauseClick)
 
-    startBtn.style.backgroundColor  = 'rgb(218, 170, 15)'
+    startBtn.style.backgroundColor  = '#34ad99ff'
     startBtn.innerText              = "Pause"
     output.textContent              = "Extracting..."
     
@@ -31,17 +35,14 @@ api.on('scrapeProgress', (data) => {
 })
 
 // PROGRESSBAR
-const bar  = document.getElementById('progressBar');
-const text = document.getElementById('progressText');
-
 function setProgress(current, total) {
   let pct = current / total
   pct     =  Math.floor(100 * pct)
 
-  bar.setAttribute('aria-valuenow', pct);
+  progressBar.setAttribute('aria-valuenow', pct);
   
-  bar.style.width       = `${pct}%`;
-  text.textContent      = `${Math.round(pct)}%`;
+  progressBar.style.width = `${pct}%`;
+  percentage.textContent  = `${Math.round(pct)}%`;
 }
 
 // Convert seconds to hours and minutes
