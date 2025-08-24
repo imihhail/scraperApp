@@ -18,7 +18,7 @@ function createWindow() {
     title: 'WebScraper',
     width: 445,
     height: 580,
-    resizable: true, 
+    resizable: false, 
     maximizable: false,     
     fullscreenable: false,  
     backgroundColor: '#00000000',
