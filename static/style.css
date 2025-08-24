@@ -2,11 +2,8 @@
   --bg-progressBoxes: rgba(60, 105, 95, 0.432);
   --input-border: rgba(114, 255, 126, 0.705);
 
-  --accent-green: #4CAF50;
-  --accent-yellow: #2196F3;
-
-  --primary: #29abe2;
-  --success: #4caf50;
+  --primary: #63e468;
+  --success: #48a14b;
 
 }
 
@@ -65,7 +62,7 @@ body {
   border: none;
   border-bottom: 1px solid var(--input-border);
   background: #1c313800;
-  color: white;
+  color: #ffffff;
   font-size: 1.1rem;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   letter-spacing: 0.7px;
@@ -75,7 +72,7 @@ input::placeholder {
   font-size: 1.1rem; 
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   letter-spacing: 0.7px;
-  color: #dbdada; 
+  color: #ffffffab; 
   padding-left: 3px;
 }
 
@@ -97,16 +94,18 @@ input[type="number"]::-webkit-inner-spin-button {
 /* FOLDER */
 #choose-folder {
   padding: 0;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
   background-color: rgba(54, 129, 98, 0);
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#choose-folder:hover img {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5)) brightness(1);
 }
 
 #choose-folder:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .folder-section{
@@ -155,7 +154,6 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 400px;
   background-color: rgb(76, 175, 79);
 }
-
 
 /* * { outline: 1px dashed red; } */
 
@@ -296,6 +294,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* ERROR POPUP */
 .error-popup {
   background-color: red;
+  font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   align-items: center;   

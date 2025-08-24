@@ -51,6 +51,7 @@ async function handlePauseClick() {
   timeLeft.textContent = ""
   startBtn.innerText   = "Resume"
   startBtn.disabled    = boolean
+  startBtn.style.backgroundColor = 'rgb(76, 175, 79)'
 
   if (boolean) {
     output.textContent = `Continue extracting at ${data.pagesVisited + 1} page.\nData saved: ${fileLocation}`
@@ -61,8 +62,6 @@ async function handlePauseClick() {
   
   output.title         = data.fileLocation
 
-  startBtn.style.backgroundColor = 'rgb(76, 175, 79)'
-  
   document.body.classList.remove('loading');
 }
 
@@ -148,28 +147,3 @@ async function waitForResult() {
     setProgress(1, 1)
   }
 }
-
-// Track user input like in react
-urlInput.addEventListener     ('input', inputCheck)
-fileNameInput.addEventListener('input', inputCheck)
-
-function inputCheck() {
-  if (urlInput.value == "" || fileNameInput.value == "" || folderPath == undefined) {
-    startBtn.disabled = true
-  }
-  else {
-    startBtn.disabled = false
-  }
-}
-
-const minBtn   = document.getElementById('minBtn');
-const closeWin = document.getElementById('closeWin');
-
-
-minBtn.addEventListener('click', () => {
-  window.winapi.minimize()
-})
-
-closeWin.addEventListener('click', () => window.winapi.close());
-
-

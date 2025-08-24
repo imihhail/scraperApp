@@ -16,8 +16,8 @@ let win
 function createWindow() {
    win = new BrowserWindow({
     title: 'WebScraper',
-    width: 875,
-    height: 685,
+    width: 445,
+    height: 580,
     resizable: true, 
     maximizable: false,     
     fullscreenable: false,  
@@ -32,7 +32,7 @@ function createWindow() {
   }) 
   win.loadFile('./renderer/index.html')
 
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
   Menu.setApplicationMenu(null)
 }
 
@@ -44,7 +44,7 @@ ipcMain.handle('window-minimize', () => {
 
 ipcMain.handle('window-close', () => win.close());
 
-// NOTIFY
+// NOTIFY ON TASKBAR
 ipcMain.handle('notify-event', () => {
   if (!win) return;
   win.flashFrame(true);
@@ -69,7 +69,7 @@ ipcMain.handle('confirm-overwrite', async (e, filePath) => {
   return response === 0 
 })
 
-// Expose folder path
+// EXPOSE FOLDER PATH
 ipcMain.handle('select-folder', async () => {
   const { canceled, filePaths } = await dialog.showOpenDialog({
     title: 'Select a folder...',
@@ -87,7 +87,7 @@ ipcMain.handle('check-file-exists', (event, folder, fileName) => {
 });
 
 
-// Catch message from selenium
+// CATCH MESSAGES FROM SELENIUM
 ipcMain.on('scrapeError', (e, msg) => {
   store.set('scrapeData', scrapeData)
   e.sender.send('scrapeError', msg)

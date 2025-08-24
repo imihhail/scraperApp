@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import Toastify from 'toastify-js';
 import { scrapeData, pauseScraping } from './scrapeData.spec.js';
 
 
@@ -60,20 +59,10 @@ contextBridge.exposeInMainWorld('cancelExtraction', {
   pauseScrapings: () => pauseScraping()
 })
 
-contextBridge.exposeInMainWorld('Toastify', {
-  toast: (options) => Toastify(options).showToast()
-})
 
 contextBridge.exposeInMainWorld('winapi', {
   minimize: () => ipcRenderer.invoke('window-minimize'),
   close:    () => ipcRenderer.invoke('window-close'),
-  toggleMax:() => ipcRenderer.invoke('window-toggle-maximize'),
-  on: (channel, cb) => {
-    // allow only these events
-    if (channel === 'window-maximized' || channel === 'window-unmaximized' ) {
-      ipcRenderer.on(channel, (_e, ...args) => cb(...args));
-    }
-  }
 });
 
 
