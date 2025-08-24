@@ -21,5 +21,14 @@
   "keywords": [],
   "author": "Ivar Mihhailov",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "WebScraper"
+  }
 }
