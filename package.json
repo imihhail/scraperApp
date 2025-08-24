@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "csv-writer": "^1.6.0",
-    "electron-store": "^10.1.0"
+    "electron-store": "^10.1.0",
+    "selenium-webdriver": "^4.35.0"
   },
   "type": "module",
   "ProductName": "WebScraper",
@@ -9,10 +10,8 @@
   "version": "1.0.0",
   "main": "main.js",
   "devDependencies": {
-    "chromedriver": "^139.0.2",
     "electron": "^37.2.0",
-    "electron-builder": "^26.0.12",
-    "selenium-webdriver": "^4.35.0"
+    "electron-builder": "^26.0.12"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
