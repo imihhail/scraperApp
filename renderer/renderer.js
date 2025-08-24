@@ -134,7 +134,7 @@ async function waitForResult() {
     firstUpdate          = false
     
     output.textContent   = 'Extraction complete! Data saved into:'
-    timeLeft.textContent = `${folderText.textContent}\\${fileNameInput.value}`
+    timeLeft.textContent = `${folderText.textContent}\\${fileNameInput.value}.csv`
     fileNameInput.value  = ""
 
     startBtn.style.backgroundColor = 'rgb(76, 175, 79)'

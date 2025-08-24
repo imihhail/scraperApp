@@ -7,7 +7,7 @@ import { NoSuchElementError, TimeoutError, SessionNotCreatedError, InvalidArgume
 let isPaused = false
 
 
-export async function scrapeData(url, filePath, delayInp, onEvent = () => {}) {
+export async function scrapeData(url, filePath, delayInp, onEvent = () => {}) {  
   let driver
   const scrapeDelay = delayInp == "" ? 10000 : Number(delayInp)
   

@@ -119,7 +119,7 @@ ipcMain.handle('getStoreData', (e, key) => {
 
 // Closes on all OS systems, instead of minimazing
 app.on('window-all-closed', () => {
-  if (process.platform === 'darwin') {
-    app.quit()
+  if (process.platform !== 'darwin') {
+    app.quit();
   }
 })
